@@ -3,12 +3,12 @@ Xperimenter: DOE-based Experiment Management Tool
 
 Welcome to the Xperimenter development page!  This initial release includes
 early version of the Xperimenter Environment (DSL grammar, Editor, Management
-Product, Kepler Interpreter, etc...).
+Product, Kepler Translator, etc...).
 
 Download
 --------
 
-See the Xperimenter project page to download this release.
+See the Xperimenter project page to download the latest release.
 
 	http://www.ceng.metu.edu.tr/~e1564178/xperimenter/
 
