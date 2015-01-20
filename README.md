@@ -1,15 +1,16 @@
-Xperimenter
-============
+Xperimenter: DOE-based Experiment Management Tool
+=================================================
 
-Welcome to the Xperimenter 0.0.1 release!  This initial release includes
-versions of the Xperimenter DSL definition and its supporting environment.
+Welcome to the Xperimenter development page!  This initial release includes
+early version of the Xperimenter Environment (DSL grammar, Editor, Management
+Product, Kepler Interpreter, etc...).
 
 Download
 --------
 
 See the Xperimenter project page to download this release.
 
-	http://www.xperimenter.net
+	http://www.ceng.metu.edu.tr/~e1564178/xperimenter/
 
 
 Requirements
