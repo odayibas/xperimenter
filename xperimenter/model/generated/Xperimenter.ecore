@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xperimenter" nsURI="http://www.ceng.metu.edu.tr/~e1564178/xperimenter"
+    nsPrefix="xperimenter">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Experiment" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objective" eType="#//Objective"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="design" eType="#//Design"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simulation" eType="#//Simulation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="analysis" eType="#//StatAnalysis"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visualization" eType="#//VisualizationType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeout" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Design" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//SamplingMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
+        upperBound="-1" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Simulation" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelFilePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelType" eType="#//SimModelType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//Port" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StatAnalysis" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Port">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InPort" eSuperTypes="#//Port"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutPort" eSuperTypes="#//Port"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//VariableType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" eType="#//VariableGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="highValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generator" eType="#//NumberGenerator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberGenerator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Objective">
+    <eLiterals name="COMPARATIVE" literal="COMPARATIVE"/>
+    <eLiterals name="SCREENING" value="1" literal="SCREENING"/>
+    <eLiterals name="RESPSURFACE" value="2" literal="RESPSURFACE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SimModelType">
+    <eLiterals name="STATIC" literal="STATIC"/>
+    <eLiterals name="CONTINUOUS" value="1" literal="CONTINUOUS"/>
+    <eLiterals name="DISCRETEEVENT" value="2" literal="DISCRETEEVENT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VariableGroup">
+    <eLiterals name="FACTOR" literal="FACTOR"/>
+    <eLiterals name="RESPONSE" value="1" literal="RESPONSE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VariableType">
+    <eLiterals name="BOOLEAN" literal="BOOLEAN"/>
+    <eLiterals name="INTEGER" value="1" literal="INTEGER"/>
+    <eLiterals name="FLOAT" value="2" literal="FLOAT"/>
+    <eLiterals name="STRING" value="3" literal="STRING"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SamplingMethod">
+    <eLiterals name="RANDOMIZED" literal="RANDOMIZED"/>
+    <eLiterals name="RANDOMIZEDBLOCK" value="1" literal="RANDOMIZEDBLOCK"/>
+    <eLiterals name="FACTORIAL" value="2" literal="FACTORIAL"/>
+    <eLiterals name="FRACFACTORIAL" value="3" literal="FRACFACTORIAL"/>
+    <eLiterals name="CENTRALCOMP" value="4" literal="CENTRALCOMP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StatAnalysisType">
+    <eLiterals name="HYPOTESTING" literal="HYPOTESTING"/>
+    <eLiterals name="ANOVA" value="1" literal="ANOVA"/>
+    <eLiterals name="MANOVA" value="2" literal="MANOVA"/>
+    <eLiterals name="CONFINTERVAL" value="3" literal="CONFINTERVAL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VisualizationType">
+    <eLiterals name="HISTOGRAM" literal="HISTOGRAM"/>
+    <eLiterals name="SCATTERPLOT" value="1" literal="SCATTERPLOT"/>
+  </eClassifiers>
+</ecore:EPackage>

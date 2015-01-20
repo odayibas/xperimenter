@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/xperimenter/src-gen" editDirectory="/xperimenter.edit/src"
+    editorDirectory="/xperimenter.editor/src" modelPluginID="xperimenter" forceOverwrite="true"
+    modelName="Xperimenter" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="xperimenter.edit"
+    editorPluginID="xperimenter.editor" runtimeVersion="2.10">
+  <genPackages prefix="Xperimenter" basePackage="tr.edu.metu.ceng" disposableProviderFactory="true"
+      fileExtensions="xpr" ecorePackage="Xperimenter.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//Objective">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//Objective/COMPARATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//Objective/SCREENING"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//Objective/RESPSURFACE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//SimModelType">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SimModelType/STATIC"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SimModelType/CONTINUOUS"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SimModelType/DISCRETEEVENT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//VariableGroup">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableGroup/FACTOR"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableGroup/RESPONSE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//VariableType">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VariableType/STRING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//SamplingMethod">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SamplingMethod/RANDOMIZED"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SamplingMethod/RANDOMIZEDBLOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SamplingMethod/FACTORIAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SamplingMethod/FRACFACTORIAL"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//SamplingMethod/CENTRALCOMP"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//StatAnalysisType">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//StatAnalysisType/HYPOTESTING"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//StatAnalysisType/ANOVA"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//StatAnalysisType/MANOVA"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//StatAnalysisType/CONFINTERVAL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Xperimenter.ecore#//VisualizationType">
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VisualizationType/HISTOGRAM"/>
+      <genEnumLiterals ecoreEnumLiteral="Xperimenter.ecore#//VisualizationType/SCATTERPLOT"/>
+    </genEnums>
+    <genClasses ecoreClass="Xperimenter.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Model/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Type/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//Experiment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Experiment/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Experiment/objective"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Experiment/design"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Experiment/simulation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Experiment/analysis"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Experiment/visualization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Experiment/timeout"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//Design">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Design/method"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Design/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//Simulation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Simulation/modelFilePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Simulation/modelType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Simulation/ports"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//StatAnalysis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//StatAnalysis/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Port/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Port/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//InPort"/>
+    <genClasses ecoreClass="Xperimenter.ecore#//OutPort"/>
+    <genClasses ecoreClass="Xperimenter.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Variable/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Variable/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Variable/lowValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//Variable/highValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xperimenter.ecore#//Variable/generator"/>
+    </genClasses>
+    <genClasses ecoreClass="Xperimenter.ecore#//NumberGenerator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//NumberGenerator/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//NumberGenerator/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xperimenter.ecore#//NumberGenerator/seed"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
