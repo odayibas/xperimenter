@@ -131,7 +131,11 @@ The above method allows a user to specify a set of variants and to map them to t
 
 |**Enumeration Name**|**Values**|
 |--------------------|----------|
-|VariableGroup|UNDEFINED, DEPENDENT, INDEPENDENT, CONTROL, NUISANCE|
+|Objective|COMPARATIVE, SCREENING, RESPSURFACE|
+|SamplingMethod|FACTORIAL, FRACFACTORIAL, CENTRALCOMP|
+|SimModelType|STATIC, CONTINUOUS, DESCRITEEVENT|
+|VariableGroup|UNDEFINED, FACTOR, RESPONSE, NUISANCE|
+|VariableType|BOOLEAN, INTEGER, FLOAT, STRING|
 |VisualizationType|DEFAULT, HISTOGRAM, SCATTERPLOT, BARCHART|
 
 # Future Works
