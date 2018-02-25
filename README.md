@@ -6,6 +6,11 @@ Welcome to the Xperimenter development page!  This release includes the latest v
 * This will become a table of contents (this text will be scraped).
 {:toc}
 
+# Introduction
+Ultimate goal of a simulation practitioner is to understand a system (natural or synthetic) by running a corresponding model. This is obvious that the success of that endeavor is depended to a systematic approach and planning ahead. Our proposed solution is to support computer simulation domain by using model-driven development practices. 
+
+Xperimenter is an external domain-specific language to specify simulation experiments. As a declarative language, it is used to declare user requirements about an experiment. The translator generates the target environment entities as runnable assets. Later, target environment uses these assets to replicate the originator's experiment. Xperimenter also has a mechanism to manage experiment variants. The fragments of an experiment specification are mapped to the features and these selectable features are used to provide a mechanism for managed reuse.
+
 # Download
 Please refer to the Xperimenter project page to download the latest release:
 
@@ -18,11 +23,6 @@ Note that the Xperimenter environment requires the Eclipse Modeling Project plug
 	http://eclipse.org/modeling/
 
 and install it into your local eclipse distribution.
-
-# Introduction
-Ultimate goal of a simulation practitioner is to understand a system (natural or synthetic) by running a corresponding model. This is obvious that the success of that endeavor is depended to a systematic approach and planning ahead. Our proposed solution is to support computer simulation domain by using model-driven development practices. 
-
-Xperimenter is an external domain-specific language to specify simulation experiments. As a declarative language, it is used to declare user requirements about an experiment. The translator generates the target environment entities as runnable assets. Later, target environment uses these assets to replicate the originator's experiment. Xperimenter also has a mechanism to manage experiment variants. The fragments of an experiment specification are mapped to the features and these selectable features are used to provide a mechanism for managed reuse.
 
 # Using Xperimenter
 The goal of introducing new DSL is twofold: First, it is the medium of specifying simulation experiments. Users are able to declare their requirements in the problem space and these declarations are used to generate respective solution artifacts by the language translator. Secondly, fragments of an experiment specification are mapped to features to manage simulation experiment variability.
@@ -127,6 +127,7 @@ The above method allows a user to specify a set of variants and to map them to t
 * **variable** definitions incorporate high/low values for factors and a generator reference for nuisances.
 * Generic information holders such as **desc** are generally assigned with string literals (defined using double quotation mark).
 * Java-style commenting is possible throughout the experiment definition code.
+* Optional parts (e.g. specifyinh **timeout** in **experiment**) must be omitted completely (not just omitting value part) to avoid getting error (the editor will guide you by highlighting, though)
 
 ## Constants
 
