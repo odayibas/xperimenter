@@ -66,7 +66,7 @@ simulation SIMULATION_A
 	outport outZ : K;
 }
 
-statAnalysis STAT_MTD_ANOVA
+analysis STAT_MTD_ANOVA
 {
 	service tr.edu.metu.ceng.xperimenter.statistics.OneWayAnova;
 }
@@ -113,21 +113,25 @@ The above method allows a user to specify a set of variants and to map them to t
 # Language Reference
 ## Types
 ![domain model]({{ site.url }}/xperimenter/doc/img/domain_model.png)
-## Variables
-## Constants
-## Expressions
 
-Operators
-Control Structures
-Functions
-Classes and Objects
-Namespaces
-Errors
-Exceptions
-Generators
-References Explained
-Predefined Variables
-Predefined Exceptions
-Predefined Interfaces and Classes
-Context options and parameters
-Supported Protocols and Wrappers
+|element|description|
+---------------------
+|experiment|The root element of each experiment. Its atttibutes may be binded by using variability management preprocessor on the other hand, only one **experiment** element is expected in a xperimenter file (*.xpr).|
+|simulation|Defines the URI and type of simulation model.It also includes input/output port definitions of the model|
+|design|Defines control variables and experimental design such as full factorial, fractional factorial, etc.|
+|analysis|Defines the URI of the statistical analysis service.|
+|variable|Defines data type, group of a variable. High/low values for factors, generator reference for nuisances are also listed here.|
+|generator|Defines a PRNG by stating service URI and seed value.|
+
+## Values, Variables and Experssions
+* **variable** definitions incorporates high and low values for factors and these values may be float, integer, string or enumeration.
+* string literals are defined using double quotation mark.
+
+## Constants
+|Enumeration Name|Values|
+-------------------------
+|VariableGroup|UNDEFINED, DEPENDENT, INDEPENDENT, CONTROL, NUISANCE|
+|VisualizationType|DEFAULT, HISTOGRAM, SCATTERPLOT, BARCHART|
+
+# Future Works
+
