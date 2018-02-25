@@ -109,7 +109,7 @@ The above method allows a user to specify a set of variants and to map them to t
 
 # Language Reference
 ## Types
-[[https://github.com/odayibas/xperimenter/blob/master/doc/img/domain_model.png|alt=domain_model]]
+![domain model]({{ site.url }}/doc/img/domain_model.png)
 ## Variables
 ## Constants
 ## Expressions
