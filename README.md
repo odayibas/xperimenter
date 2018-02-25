@@ -124,8 +124,9 @@ The above method allows a user to specify a set of variants and to map them to t
 |generator|Defines a PRNG by stating service URI and seed value.|
 
 ## Values, Variables and Experssions
-* **variable** definitions incorporates high and low values for factors and these values may be float, integer, string or enumeration.
-* string literals are defined using double quotation mark.
+* **variable** definitions incorporate high/low values for factors and a generator reference for nuisances.
+* Generic information holders such as **desc** are generally assigned with string literals (defined using double quotation mark).
+* Java-style commenting is possible throughout the experiment definition code.
 
 ## Constants
 
@@ -140,3 +141,6 @@ The above method allows a user to specify a set of variants and to map them to t
 
 # Future Works
 
+* **Extending feature model:** Variability management method of Xperimenter relies on a feature model (simulation experiment feature model, please refer to [our Journal of Simulation paper](https://doi.org/10.1080/17477778.2017.1418638) for details). Therefore, extending/enriching this model creates finer grained features and more efficient variability management becomes possible.
+* **Adding support for other target environments:** Additional translators can be developed to support the environments other than Kepler (e.g. pure Java, Repast).
+* **Big Data Analytics & ML:** Experiment family specifications and related information generated throughout the lifespan of any experiment may be used to understand the methods & approaches of the domain experts. In this respect, Xperimenter is our proposed shared language to manage simulation experiments and it can be extended by [active learning](https://becominghuman.ai/accelerate-machine-learning-with-active-learning-96cea4b72fdb) module to guide practioners while specifying/revising an experiment.
