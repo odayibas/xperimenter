@@ -128,8 +128,9 @@ The above method allows a user to specify a set of variants and to map them to t
 * string literals are defined using double quotation mark.
 
 ## Constants
+
 |**Enumeration Name**|**Values**|
-|--------------------|-----------|
+|--------------------|----------|
 |VariableGroup|UNDEFINED, DEPENDENT, INDEPENDENT, CONTROL, NUISANCE|
 |VisualizationType|DEFAULT, HISTOGRAM, SCATTERPLOT, BARCHART|
 
