@@ -114,9 +114,9 @@ The above method allows a user to specify a set of variants and to map them to t
 ## Types
 ![domain model]({{ site.url }}/xperimenter/doc/img/domain_model.png)
 
-|element|description|
-|--------|----------|
-experiment|The root element of each experiment. Its atttibutes may be binded by using variability management preprocessor on the other hand, only one **experiment** element is expected in a xperimenter file (*.xpr).|
+|**Element**|**Description**|
+|-----------|---------------|
+|experiment|The root element of each experiment. Its atttibutes may be binded by using variability management preprocessor on the other hand, only one **experiment** element is expected in a xperimenter file (*.xpr).|
 |simulation|Defines the URI and type of simulation model.It also includes input/output port definitions of the model|
 |design|Defines control variables and experimental design such as full factorial, fractional factorial, etc.|
 |analysis|Defines the URI of the statistical analysis service.|
@@ -128,8 +128,8 @@ experiment|The root element of each experiment. Its atttibutes may be binded by 
 * string literals are defined using double quotation mark.
 
 ## Constants
-|Enumeration Name|Values|
-|----------------|-------|
+|**Enumeration Name**|**Values**|
+|--------------------|-----------|
 |VariableGroup|UNDEFINED, DEPENDENT, INDEPENDENT, CONTROL, NUISANCE|
 |VisualizationType|DEFAULT, HISTOGRAM, SCATTERPLOT, BARCHART|
 
