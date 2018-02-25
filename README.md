@@ -21,7 +21,7 @@ Ultimate goal of a simulation practitioner is to understand a system (natural or
 
 Xperimenter is an external domain-specific language to specify simulation experiments. As a declarative language, it is used to declare user requirements about an experiment. The translator generates the target environment entities as runnable assets. Later, target environment uses these assets to replicate the originator's experiment. Xperimenter also has a mechanism to manage experiment variants. The fragments of an experiment specification are mapped to the features and these selectable features are used to provide a mechanism for managed reuse.
 
-# Using the Language
+# Using Xperimenter
 The goal of introducing new DSL is twofold: First, it is the medium of specifying simulation experiments. Users are able to declare their requirements in the problem space and these declarations are used to generate respective solution artifacts by the language translator. Secondly, fragments of an experiment specification are mapped to features to manage simulation experiment variability.
 
 ## Specifying an Experiment
@@ -40,7 +40,7 @@ experiment exp_A
 }
 {% endhighlight %}
 
-The "experiment" specification involves a reference to an experiment design and each design is given a name to refer to it, a sampling method to be used and a list of variables.
+The **experiment** specification involves a reference to an experiment design and each design is given a name to refer to it, a sampling method to be used and a list of variables.
 
 {% highlight java %}
 design FULL_FACT_DESIGN
@@ -106,3 +106,24 @@ generator NUM_GEN_1
 {% endhighlight %}
 
 The above method allows a user to specify a set of variants and to map them to the feature model. The resulting specification creates a feature annotated code and then the language processor superimposes the selected feature configuration onto the provided code to extract a particular valid experiment specification. For instance, above code snippet includes two random number generators with the same name. According to the grammar, these two generators cannot reside in a single experiment. The simulation experiment feature model allows the selection of only one of the alternative options in a valid feature configuration. Therefore, the actual experiment uses one generator according to user provided feature configuration.
+
+# Language Reference
+## Types
+## Variables
+## Constants
+## Expressions
+
+Operators
+Control Structures
+Functions
+Classes and Objects
+Namespaces
+Errors
+Exceptions
+Generators
+References Explained
+Predefined Variables
+Predefined Exceptions
+Predefined Interfaces and Classes
+Context options and parameters
+Supported Protocols and Wrappers
