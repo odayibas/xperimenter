@@ -1,7 +1,7 @@
 Xperimenter: DOE-based Experiment Management Environment
 =====================================================
 
-Welcome to the Xperimenter development page!  This release includes the latest version of Xperimenter Environment (DSL grammar, Editor, Management Product, Kepler Translator, etc).
+Welcome to the Xperimenter development page!  The repository includes the latest version of Xperimenter Environment (DSL grammar, Editor, Management Product, Kepler Translator, etc.). The main goal of this page is to create an entry point for both power and true users of Xperimenter.
 
 * This will become a table of contents (this text will be scraped).
 {:toc}
