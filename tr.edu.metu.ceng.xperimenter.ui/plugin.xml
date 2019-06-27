@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+			default="true"
+			extensions="mydsl"
+			id="tr.edu.metu.ceng.Xperimenter"
+			name="Xperimenter Editor">
+		</editor>
+	</extension>
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+			<activeWhen>
+				<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="tr.edu.metu.ceng.Xperimenter.validate">
+		<activeWhen>
+			<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+			</reference>
+		</activeWhen>
+		</handler>
+		<!-- copy qualified name -->
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
+			<activeWhen>
+				<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened" />
+			</activeWhen>
+		</handler>
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
+			<activeWhen>
+				<and>
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.XtextEditor.opened" />
+					<iterate>
+						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+					</iterate>
+				</and>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.expressions.definitions">
+		<definition id="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+			<and>
+				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="tr.edu.metu.ceng.Xperimenter"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+		<definition id="tr.edu.metu.ceng.Xperimenter.XtextEditor.opened">
+			<and>
+				<reference definitionId="isXtextEditorActive"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="tr.edu.metu.ceng.Xperimenter"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+	</extension>
+	<extension
+			point="org.eclipse.ui.preferencePages">
+		<page
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter"
+			name="Xperimenter">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.coloring"
+			name="Syntax Coloring">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.templates"
+			name="Templates">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+	</extension>
+	<extension
+			point="org.eclipse.ui.propertyPages">
+		<page
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter"
+			name="Xperimenter">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension
+		point="org.eclipse.ui.keywords">
+		<keyword
+			id="tr.edu.metu.ceng.ui.keyword_Xperimenter"
+			label="Xperimenter"/>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+	<command
+			description="Trigger expensive validation"
+			id="tr.edu.metu.ceng.Xperimenter.validate"
+			name="Validate">
+	</command>
+	<!-- copy qualified name -->
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	<command
+			id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+			categoryId="org.eclipse.ui.category.edit"
+			description="Copy the qualified name for the selected element"
+			name="Copy Qualified Name">
+	</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			 <command
+				 commandId="tr.edu.metu.ceng.Xperimenter.validate"
+				 style="push"
+				 tooltip="Trigger expensive validation">
+			<visibleWhen checkEnabled="false">
+				<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+				</reference>
+			</visibleWhen>
+		</command>
+		</menuContribution>
+		<!-- copy qualified name -->
+		<menuContribution locationURI="popup:#TextEditorContext?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="menu:edit?after=copy">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
+			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
+				style="push" tooltip="Copy Qualified Name">
+				<visibleWhen checkEnabled="false">
+					<and>
+						<reference definitionId="tr.edu.metu.ceng.Xperimenter.XtextEditor.opened" />
+						<iterate>
+							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+						</iterate>
+					</and>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			commandId="org.eclipse.xtext.ui.editor.FindReferences">
+			<activeWhen>
+				<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="mydsl"
+			id="tr.edu.metu.ceng.Xperimenter.contenttype"
+			name="Xperimenter File"
+			priority="normal">
+		</content-type>
+	</extension>
+	<!-- adding resource factories -->
+	<extension
+		point="org.eclipse.emf.ecore.extension_parser">
+		<parser
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="mydsl">
+		</parser>
+	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+		<resourceServiceProvider
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="mydsl">
+		</resourceServiceProvider>
+	</extension>
+	<!-- marker definitions for tr.edu.metu.ceng.Xperimenter -->
+	<extension
+			id="xperimenter.check.fast"
+			name="Xperimenter Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.fast"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="xperimenter.check.normal"
+			name="Xperimenter Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.normal"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="xperimenter.check.expensive"
+			name="Xperimenter Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.expensive"/>
+		<persistent value="true"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.validator.preferencePage"
+			name="Errors/Warnings">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.xtext.builder.participant">
+		<participant
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="mydsl"/>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.compiler.preferencePage"
+			name="Compiler">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.propertyPages">
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.compiler.propertyPage"
+			name="Compiler">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+			<enabledWhen>
+				<adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+			<filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+			<command
+				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
+				id="tr.edu.metu.ceng.Xperimenter.OpenGeneratedCode"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened" />
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
+			<activeWhen>
+				<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened" />
+			</activeWhen>
+		</handler>
+	</extension>
+	<!-- Quick Outline -->
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler 
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
+			<activeWhen>
+				<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="Open the quick outline."
+			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+			name="Quick Outline">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.open">
+			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
+				style="push"
+				tooltip="Open Quick Outline">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened"/>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<!-- quickfix marker resolution generator for tr.edu.metu.ceng.Xperimenter -->
+	<extension
+			point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="tr.edu.metu.ceng.xperimenter.ui.xperimenter.check.fast">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="tr.edu.metu.ceng.xperimenter.ui.xperimenter.check.normal">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="tr.edu.metu.ceng.xperimenter.ui.xperimenter.check.expensive">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+	</extension>
+	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="tr.edu.metu.ceng.Xperimenter.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="tr.edu.metu.ceng.Xperimenter"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="tr.edu.metu.ceng.Xperimenter.refactoring"
+			name="Refactoring">
+			<keywordReference id="tr.edu.metu.ceng.ui.keyword_Xperimenter"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.compare.contentViewers">
+		<viewer id="tr.edu.metu.ceng.Xperimenter.compare.contentViewers"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="mydsl">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="tr.edu.metu.ceng.Xperimenter.contenttype"
+			contentViewerId="tr.edu.metu.ceng.Xperimenter.compare.contentViewers" />
+	</extension>
+	<extension point="org.eclipse.compare.contentMergeViewers">
+		<viewer id="tr.edu.metu.ceng.Xperimenter.compare.contentMergeViewers"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="mydsl" label="Xperimenter Compare">
+		</viewer>
+		<contentTypeBinding
+			contentTypeId="tr.edu.metu.ceng.Xperimenter.contenttype"
+			contentMergeViewerId="tr.edu.metu.ceng.Xperimenter.compare.contentMergeViewers" />
+	</extension>
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider id="tr.edu.metu.ceng.Xperimenter.editors.documentProviders"
+			class="tr.edu.metu.ceng.ui.XperimenterExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="mydsl">
+		</provider>
+	</extension>
+	<extension point="org.eclipse.team.core.fileTypes">
+		<fileTypes
+			extension="mydsl"
+			type="text">
+		</fileTypes>
+	</extension>
+</plugin>
