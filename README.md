@@ -76,7 +76,7 @@ analysis STAT_MTD_ANOVA
 
 {% highlight java %}
 variable X : FLOAT group FACTOR [0.5 , 1.5];
-variable Y : INTEGER group FACTOR [0.3 , 2.4];
+variable Y : INTEGER group FACTOR [3 , 14];
 variable Z : FLOAT group NUISANCE gen NUM_GEN_1;
 variable K : FLOAT group RESPONSE;
 
