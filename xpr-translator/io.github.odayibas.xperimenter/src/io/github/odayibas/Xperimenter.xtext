@@ -1,0 +1,124 @@
+grammar io.github.odayibas.Xperimenter with org.eclipse.xtext.common.Terminals
+
+generate xperimenter "http://www.github.io/odayibas/Xperimenter"
+
+Model :
+  (elements += Type)*
+;
+  
+Type:
+	NormalType | FeaturedType
+;
+
+FeaturedType:
+	'#ifdef' feature = ID
+	(featureContent += NormalType)
+	'#endif'
+;
+
+NormalType:
+  Experiment | Design | Simulation | StatAnalysis | NumberGenerator | Variable
+;
+  
+Experiment:
+	'experiment' name = ID 
+	'{'
+		('desc' description = STRING ';')?
+		'objective' objective = Objective ';'
+		'design' design = [Design] ';'
+		'simulation' simulation = [Simulation] ';'
+  		'analysis' analysis = [StatAnalysis] ';'
+  		'visual' visualization = VisualizationType ';' 		
+  		'target' target=TargetType ';'
+  		('workdir' workdir = STRING ';')?
+  		('timeout' timeout = INT ';')?
+	'}'
+;
+ 
+Design:
+	'design' name = ID '{'
+		'method' method = SamplingMethod ';'
+		'varlist' (variables += [Variable]*) ';'
+	'}'
+;
+
+Simulation:
+	'simulation' name = ID '{'
+		'modelFile' modelFilePath = STRING ';'
+		('modelType' modelType = SimModelType ';')
+		(ports += Port)*	
+	'}'
+;
+
+StatAnalysis:
+	'statAnalysis' name=ID '{'
+		action = Callable
+	'}'
+;
+
+Port:
+	InPort | OutPort
+;
+
+InPort:
+	'inport' name = ID ':' variable = [Variable] ';'
+;
+
+OutPort:
+	'outport' name = ID ':' variable = [Variable] ';'
+;
+
+Callable:
+	Method | Service
+;
+
+Method:
+	'method' type=StatAnalysisType ';'
+;
+
+Service:
+	'service' uri=STRING ';' 
+;
+ 
+Variable:
+  'variable' name = ID ':' type = VariableType 'group' group = VariableGroup ('[' lowValue = INT ',' highValue = INT ']')? ('gen' generator=[NumberGenerator])? ';'
+;
+
+NumberGenerator:
+	'generator' name=ID '{'
+		'method' uri=STRING ';'
+		('seed' seed=INT ';')?
+	'}'
+;
+
+enum Objective :
+	COMPARATIVE | SCREENING | RESPSURFACE
+;
+
+enum SimModelType :
+	STATIC | CONTINUOUS | DISCRETEEVENT
+;
+
+enum VariableGroup :
+	FACTOR | RESPONSE | NUISANCE
+;
+
+enum VariableType :
+	BOOLEAN | INTEGER | FLOAT | STRING  
+;
+
+enum SamplingMethod:
+	RANDOMIZED | RANDOMIZEDBLOCK | FACTORIAL | FRACFACTORIAL | CENTRALCOMP
+;
+
+enum StatAnalysisType:
+	HYPOTESTING | ANOVA | MANOVA | CONFINTERVAL
+;
+
+enum VisualizationType:
+	HISTOGRAM | SCATTERPLOT | BARCHART | DEFAULT
+;
+
+enum TargetType:
+	KEPLER | R_SCRIPT
+;

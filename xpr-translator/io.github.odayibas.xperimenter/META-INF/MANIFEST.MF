@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: io.github.odayibas.xperimenter
+Bundle-ManifestVersion: 2
+Bundle-Name: io.github.odayibas.xperimenter
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: io.github.odayibas.xperimenter; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: io.github.odayibas.services,
+ io.github.odayibas.xperimenter,
+ io.github.odayibas.xperimenter.impl,
+ io.github.odayibas.parser.antlr.internal,
+ io.github.odayibas,
+ io.github.odayibas.parser.antlr,
+ io.github.odayibas.generator,
+ io.github.odayibas.validation,
+ io.github.odayibas.serializer,
+ io.github.odayibas.scoping,
+ io.github.odayibas.xperimenter.util
+Import-Package: org.apache.log4j
